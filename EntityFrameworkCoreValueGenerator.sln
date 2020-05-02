@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0E0FB49-E6C5-4F28-B0B1-B90197046E28}"
+	ProjectSection(SolutionItems) = preProject
+		DataScript.sql = DataScript.sql
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityOperations", "EntityOperations\EntityOperations.csproj", "{4DE56AA0-0FC5-4BCC-8B6B-C50CD8287681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrontEnd", "EntityFrontEnd\EntityFrontEnd.csproj", "{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DE56AA0-0FC5-4BCC-8B6B-C50CD8287681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE56AA0-0FC5-4BCC-8B6B-C50CD8287681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE56AA0-0FC5-4BCC-8B6B-C50CD8287681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DE56AA0-0FC5-4BCC-8B6B-C50CD8287681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {481F16F0-951B-47C8-A44E-9AB59D2195B2}
+	EndGlobalSection
+EndGlobal
