@@ -4,4 +4,6 @@ A simple example for using Entity Framework Core [HasValueGenerator](https://doc
 
 Microsoft TechNet article
 
+![screenshot](assets/HasValueGenerator1.png)
+
 

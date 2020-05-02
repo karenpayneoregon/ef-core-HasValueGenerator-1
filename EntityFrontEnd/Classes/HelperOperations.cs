@@ -12,25 +12,42 @@ namespace EntityFrontEnd.Classes
         /// Reset account number
         /// </summary>
         /// <returns></returns>
-        public static bool ResetAccountNumber()
+        public static async Task<bool> ResetAccountNumber()
         {
-            using (var context = new CustomerContext())
+            var result = false;
+
+            await Task.Run(async () =>
             {
-                context.NewAccountTable.FirstOrDefault().CustomerAccountNumber = "A0000";
-                return context.SaveChanges() == 1;
-            }
+                using (var context = new CustomerContext())
+                {
+                    context.NewAccountTable.FirstOrDefault().CustomerAccountNumber = "A0000";
+                    return context.SaveChanges() == 1;
+                }
+
+            });
+
+            return result;
+
         }
         /// <summary>
         /// Add four mocked up customers, set account number
         /// </summary>
         /// <returns></returns>
-        public static bool AddCustomers()
+        public async static Task<bool> AddCustomers()
         {
-            using (var context = new CustomerContext())
+            var result = false;
+
+            await Task.Run(async () =>
             {
-                context.AddRange(MockedData.Customers());
-                return  context.SaveChanges() == 4;
-            }
+                using (var context = new CustomerContext())
+                {
+                    await context.AddRangeAsync(MockedData.Customers());
+                    result =  await context.SaveChangesAsync() == 4;
+                }
+            });
+
+            return result;
+
         }
         /// <summary>
         /// Get customers

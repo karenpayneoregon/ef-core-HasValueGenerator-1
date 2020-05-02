@@ -21,16 +21,22 @@ namespace EntityFrontEnd
             CustomerDataGridView.AutoGenerateColumns = false;
         }
 
-        private void AddCustomersButton_Click(object sender, EventArgs e)
+        private async void AddCustomersButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(HelperOperations.AddCustomers() ? 
-                "Add range successful" : 
+
+            var result = await HelperOperations.AddCustomers();
+
+            MessageBox.Show(result ?
+                "Add range successful" :
                 "Add range failed");
+
         }
 
-        private void ResetAccountNumberButton_Click(object sender, EventArgs e)
+        private async void ResetAccountNumberButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(HelperOperations.ResetAccountNumber() ? 
+            var result = await HelperOperations.ResetAccountNumber();
+
+            MessageBox.Show(result ? 
                 "Reset finished" : 
                 "Reset failed");
         }
