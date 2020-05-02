@@ -20,7 +20,9 @@ namespace EntityFrontEnd.Classes
             {
                 using (var context = new CustomerContext())
                 {
-                    context.NewAccountTable.FirstOrDefault().CustomerAccountNumber = "A0000";
+                    context.NewAccountTable
+                        .FirstOrDefault().CustomerAccountNumber = "A0000";
+
                     return context.SaveChanges() == 1;
                 }
 
@@ -63,8 +65,10 @@ namespace EntityFrontEnd.Classes
                 {
                     customers = await context.Customer
                         .AsNoTracking()
-                        .Include(customer => customer.ContactTypeIdentifierNavigation)
-                        .Include(customer => customer.GenderIdentifierNavigation)
+                        .Include(customer => 
+                            customer.ContactTypeIdentifierNavigation)
+                        .Include(customer => 
+                            customer.GenderIdentifierNavigation)
                         .ToListAsync();
                 }
             });
