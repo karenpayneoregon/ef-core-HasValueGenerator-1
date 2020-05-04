@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityOperations", "EntityO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrontEnd", "EntityFrontEnd\EntityFrontEnd.csproj", "{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncOperations", "IncludeFilter\AsyncOperations.csproj", "{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
