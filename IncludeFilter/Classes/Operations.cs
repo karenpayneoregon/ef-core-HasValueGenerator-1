@@ -28,7 +28,11 @@ namespace AsyncOperations.Classes
 
             return categoryList;
         }
-
+        /// <summary>
+        /// Get list of supplier which is assigned to a private form variable
+        /// and used when products for a specific category are selected in the form.
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<Supplier>> GetSupplierAsync() 
         {
             var categoryList = new List<Supplier>();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
 namespace AsyncOperations
@@ -8,10 +9,22 @@ namespace AsyncOperations
     public partial class Products : INotifyPropertyChanged
     {
         private string _productName;
+        private bool _process;
 
         public Products()
         {
             OrderDetails = new HashSet<OrderDetails>();
+        }
+
+        [NotMapped]
+        public bool Process
+        {
+            get => _process;
+            set
+            {
+                _process = value;
+                OnPropertyChanged();
+            }
         }
 
         public int ProductId { get; set; }

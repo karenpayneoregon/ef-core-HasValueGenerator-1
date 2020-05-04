@@ -18,12 +18,14 @@ namespace AsyncOperations
     {
         private SortableBindingList<Products> _productView;
         private BindingSource _productBindingSource = new BindingSource();
+        private List<Supplier> _supperList;
         public Form1()
         {
             InitializeComponent();
 
             ProductsButton.Enabled = false;
             SaveChangesButton.Enabled = false;
+            CheckedProductsButton.Enabled = false;
 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AllowUserToAddRows = false;
@@ -43,10 +45,13 @@ namespace AsyncOperations
             SupplierColumn.DataPropertyName = "SupplierId";
             SupplierColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
 
+            _supperList = await Operations.GetSupplierAsync();
+
             dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
 
             ProductsButton.Enabled = true;
             SaveChangesButton.Enabled = true;
+            CheckedProductsButton.Enabled = true;
 
         }
 
@@ -60,7 +65,7 @@ namespace AsyncOperations
         }
 
         /// <summary>
-        /// React to changes for the current product
+        /// Informational on changes to the current product
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -81,7 +86,7 @@ namespace AsyncOperations
 
             if (e.ListChangedType == ListChangedType.ItemChanged)
             {
-                Console.WriteLine(Operations.Context.Entry(currentProduct).State);
+                //Console.WriteLine(Operations.Context.Entry(currentProduct).State);
             }
             else if (e.ListChangedType == ListChangedType.ItemAdded)
             {
@@ -100,13 +105,16 @@ namespace AsyncOperations
 
             try
             {
+
                 _productView = new SortableBindingList<Products>(await Operations.GetProducts(categoryIdentifier));
+
                 _productView.ListChanged += _productView_ListChanged;
                 _productBindingSource.DataSource = _productView;
-                var suppliers = await Operations.GetSupplierAsync();
-                SupplierColumn.DataSource = suppliers;
+                SupplierColumn.DataSource = _supperList;
                 dataGridView1.DataSource = _productBindingSource;
+
                 dataGridView1.ExpandColumns();
+
             }
             catch (Exception ex)
             {
@@ -121,12 +129,35 @@ namespace AsyncOperations
 
         private async void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            await Operations.Context.SaveChangesAsync();
+            try
+            {
+                await Operations.Context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // ignored TODO
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void CheckedProductsButton_Click(object sender, EventArgs e)
+        {
+            if (_productView == null)
+            {
+                return;
+            }
+
+            var checkedProducts = _productView.Where(product => product.Process);
+
+            foreach (var product in checkedProducts)
+            {
+                Console.WriteLine($"Id: {product.ProductId}, Name: {product.ProductName}");
+            }
+
+            Console.WriteLine();
         }
     }
 }
