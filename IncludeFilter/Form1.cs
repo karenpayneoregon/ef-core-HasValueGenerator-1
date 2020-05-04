@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AsyncOperations.Classes;
 using AsyncOperations.Components;
+using AsyncOperations.LanguageExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace AsyncOperations 
@@ -22,6 +23,7 @@ namespace AsyncOperations
             InitializeComponent();
 
             ProductsButton.Enabled = false;
+            SaveChangesButton.Enabled = false;
 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AllowUserToAddRows = false;
@@ -32,12 +34,31 @@ namespace AsyncOperations
 
         private async void Form1_Shown(object sender, EventArgs e)
         {
+
             var categories = await Operations.GetCategoriesAsync();
             CategoryComboBox.DataSource = categories;
-            ProductsButton.Enabled = true;
 
-            
+            SupplierColumn.DisplayMember = "CompanyName";
+            SupplierColumn.ValueMember = "SupplierId";
+            SupplierColumn.DataPropertyName = "SupplierId";
+            SupplierColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+
+            dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
+
+            ProductsButton.Enabled = true;
+            SaveChangesButton.Enabled = true;
+
         }
+
+        private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "SupplierColumn")
+            {
+                var currentProduct = _productView[_productBindingSource.Position];
+                Console.WriteLine();
+            }
+        }
+
         /// <summary>
         /// React to changes for the current product
         /// </summary>
@@ -80,10 +101,12 @@ namespace AsyncOperations
             try
             {
                 _productView = new SortableBindingList<Products>(await Operations.GetProducts(categoryIdentifier));
-                //_productView.ListChanged -= _productView_ListChanged;
                 _productView.ListChanged += _productView_ListChanged;
                 _productBindingSource.DataSource = _productView;
+                var suppliers = await Operations.GetSupplierAsync();
+                SupplierColumn.DataSource = suppliers;
                 dataGridView1.DataSource = _productBindingSource;
+                dataGridView1.ExpandColumns();
             }
             catch (Exception ex)
             {
@@ -94,6 +117,16 @@ namespace AsyncOperations
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             Operations.Context.Entry(_productView[e.Row.Index]).State = EntityState.Deleted;
+        }
+
+        private async void SaveChangesButton_Click(object sender, EventArgs e)
+        {
+            await Operations.Context.SaveChangesAsync();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

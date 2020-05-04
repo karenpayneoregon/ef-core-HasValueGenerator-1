@@ -29,6 +29,23 @@ namespace AsyncOperations.Classes
             return categoryList;
         }
 
+        public static async Task<List<Supplier>> GetSupplierAsync() 
+        {
+            var categoryList = new List<Supplier>();
+
+            await Task.Run(async () =>
+            {
+
+                categoryList = await _northWindContext.Suppliers
+                    .AsNoTracking()
+                    .Select(suppliers => new Supplier() {SupplierId = suppliers.SupplierId, CompanyName = suppliers.CompanyName})
+                    .ToListAsync();
+
+            });
+
+            return categoryList;
+        }
+
         public static async Task<List<Products>> GetProducts(int categoryIdentifier, bool throwException = false)
         {
             var productList = new List<Products>();
