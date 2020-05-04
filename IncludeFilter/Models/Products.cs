@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
@@ -29,6 +30,7 @@ namespace AsyncOperations
 
         public int ProductId { get; set; }
 
+        [Required]
         public string ProductName
         {
             get => _productName;
@@ -47,6 +49,7 @@ namespace AsyncOperations
         public short? UnitsOnOrder { get; set; }
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
+        [Required]
         public DateTime? DiscontinuedDate { get; set; }
 
         public virtual Categories Category { get; set; }

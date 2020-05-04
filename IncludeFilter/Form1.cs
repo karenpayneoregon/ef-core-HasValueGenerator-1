@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using AsyncOperations.Classes;
 using AsyncOperations.Components;
 using AsyncOperations.LanguageExtensions;
 using AsyncOperations.Projections;
 using Microsoft.EntityFrameworkCore;
+using static AsyncOperations.Classes.Dialogs;
 
 namespace AsyncOperations 
 {
@@ -148,17 +150,28 @@ namespace AsyncOperations
                 Console.WriteLine();
             }
         }
-
-        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
+        /// <summary>
+        /// Deleting from the SortableBindingList requires the product state to
+        /// be marked as deleted when deleting from the row header of the DataGridView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e) => 
             Operations.Context.Entry(_productView[e.Row.Index]).State = EntityState.Deleted;
-        }
 
+        /// <summary>
+        /// Save all changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SaveChangesButton_Click(object sender, EventArgs e)
         {
             try
             {
-                await Operations.Context.SaveChangesAsync();
+                if (Question("Save changes?"))
+                {
+                    await Operations.Context.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {

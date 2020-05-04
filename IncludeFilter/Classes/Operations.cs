@@ -11,8 +11,8 @@ namespace AsyncOperations.Classes
 {
     public class Operations
     {
-        private static readonly NorthWindContext _northWindContext = new NorthWindContext();
-        public static NorthWindContext Context => _northWindContext;
+        private static readonly NorthWindContext NorthWindContext = new NorthWindContext(); 
+        public static NorthWindContext Context => NorthWindContext;
         public static async Task<List<Category>> GetCategoriesAsync()
         {
             var categoryList = new List<Category>();
@@ -20,13 +20,14 @@ namespace AsyncOperations.Classes
             await Task.Run(async () =>
             {
 
-                categoryList = await _northWindContext.Categories
+                categoryList = await NorthWindContext.Categories
                     .AsNoTracking().Select(Category.Projection)
                     .ToListAsync();
 
             });
 
             return categoryList;
+
         }
         /// <summary>
         /// Get list of supplier which is assigned to a private form variable
@@ -43,7 +44,7 @@ namespace AsyncOperations.Classes
             await Task.Run(async () =>
             {
 
-                supplierList = await _northWindContext.Suppliers
+                supplierList = await NorthWindContext.Suppliers
                     .AsNoTracking()
                     .Select(Supplier.Projection)
                     .ToListAsync();
@@ -65,7 +66,7 @@ namespace AsyncOperations.Classes
                     var lines = File.ReadAllLines("SomeNonExistingFile.txt");
                 }
 
-                productList = await _northWindContext.Products
+                productList = await NorthWindContext.Products
                     .Include(product => product.Supplier)
                     .Where(product => product.CategoryId == categoryIdentifier)
                     .ToListAsync();

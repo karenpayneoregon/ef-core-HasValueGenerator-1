@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace AsyncOperations.Projections
+namespace AsyncOperations.Projections 
 {
     public class Category
     {

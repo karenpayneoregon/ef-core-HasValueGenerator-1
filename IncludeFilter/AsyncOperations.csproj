@@ -137,6 +137,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Dialogs.cs" />
+    <Compile Include="Classes\Exceptions.cs" />
+    <Compile Include="LanguageExtensions\ExceptionExtensions.cs" />
     <Compile Include="Projections\Category.cs" />
     <Compile Include="Projections\Supplier.cs" />
     <Compile Include="Components\SortableBindingList.cs" />
