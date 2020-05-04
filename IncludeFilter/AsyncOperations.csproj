@@ -137,8 +137,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Category.cs" />
-    <Compile Include="Classes\Supplier.cs" />
+    <Compile Include="Projections\Category.cs" />
+    <Compile Include="Projections\Supplier.cs" />
     <Compile Include="Components\SortableBindingList.cs" />
     <Compile Include="LanguageExtensions\DataGridViewExtensions.cs" />
     <Compile Include="Models\Categories.cs" />
@@ -154,7 +154,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\NorthWindContext.cs" />
+    <Compile Include="Contexts\NorthWindContext.cs" />
     <Compile Include="Models\OrderDetails.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Products.cs" />
