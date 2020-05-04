@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace AsyncOperations
 {
-    public partial class Customers
+    public partial class Customers : INotifyPropertyChanged
     {
         public Customers()
         {
@@ -28,5 +30,11 @@ namespace AsyncOperations
         public virtual ContactType ContactTypeIdentifierNavigation { get; set; }
         public virtual Countries CountryIdentifierNavigation { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

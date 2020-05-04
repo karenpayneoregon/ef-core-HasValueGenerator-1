@@ -16,9 +16,23 @@ namespace AsyncOperations
 {
     public partial class Form1 : Form
     {
+        /*
+         * Strong type container which provides sorting ability in the DataGridView
+         */
         private SortableBindingList<Products> _productView;
+
+        /*
+         * Container for DataGridView.DataSource
+         */
         private BindingSource _productBindingSource = new BindingSource();
+
+        /*
+         * Container for suppliers which is used each time the DataGridView is populated
+         * with products from a specific category rather than read them each time the
+         * DataSource of the DataGridView changes
+         */
         private List<Supplier> _supperList;
+
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +47,13 @@ namespace AsyncOperations
             Shown += Form1_Shown;
 
         }
-
+        /// <summary>
+        /// * Read in all categories w/o change tracker
+        /// * Setup ComboBox column for categories
+        /// * Read in suppliers for DataGridView ComboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Form1_Shown(object sender, EventArgs e)
         {
 
@@ -54,7 +74,11 @@ namespace AsyncOperations
             CheckedProductsButton.Enabled = true;
 
         }
-
+        /// <summary>
+        /// Informational on when the Supplier ComboBox current value changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "SupplierColumn")
@@ -65,7 +89,8 @@ namespace AsyncOperations
         }
 
         /// <summary>
-        /// Informational on changes to the current product
+        /// * Informational on changes to the current product
+        /// * Can be used for validation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -86,10 +111,11 @@ namespace AsyncOperations
 
             if (e.ListChangedType == ListChangedType.ItemChanged)
             {
-                //Console.WriteLine(Operations.Context.Entry(currentProduct).State);
+                // TODO - anything needed say in validation
             }
             else if (e.ListChangedType == ListChangedType.ItemAdded)
             {
+                // TODO - anything needed say in validation
             }
         }
 
@@ -101,7 +127,7 @@ namespace AsyncOperations
         /// <param name="e"></param>
         private async void ProductsButton_Click(object sender, EventArgs e)
         {
-            var categoryIdentifier = ((Categories) CategoryComboBox.SelectedItem).CategoryId;
+            var categoryIdentifier = ((Category) CategoryComboBox.SelectedItem).CategoryId;
 
             try
             {
@@ -138,11 +164,11 @@ namespace AsyncOperations
                 // ignored TODO
             }
         }
-
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        /// <summary>
+        /// Code for obtaining checked rows in the DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckedProductsButton_Click(object sender, EventArgs e)
         {
             if (_productView == null)
@@ -159,5 +185,11 @@ namespace AsyncOperations
 
             Console.WriteLine();
         }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
     }
 }

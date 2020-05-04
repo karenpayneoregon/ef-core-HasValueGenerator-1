@@ -13,15 +13,15 @@ namespace AsyncOperations.Classes
     {
         private static readonly NorthWindContext _northWindContext = new NorthWindContext();
         public static NorthWindContext Context => _northWindContext;
-        public static async Task<List<Categories>> GetCategoriesAsync()
+        public static async Task<List<Category>> GetCategoriesAsync()
         {
-            var categoryList = new List<Categories>();
+            var categoryList = new List<Category>();
 
             await Task.Run(async () =>
             {
 
                 categoryList = await _northWindContext.Categories
-                    .AsNoTracking()
+                    .AsNoTracking().Select(Category.Projection)
                     .ToListAsync();
 
             });
@@ -31,23 +31,26 @@ namespace AsyncOperations.Classes
         /// <summary>
         /// Get list of supplier which is assigned to a private form variable
         /// and used when products for a specific category are selected in the form.
+        ///
+        /// Note the use of a Project for selecting suppliers in the select part
+        /// of the lambda statement.
         /// </summary>
         /// <returns></returns>
         public static async Task<List<Supplier>> GetSupplierAsync() 
         {
-            var categoryList = new List<Supplier>();
+            var supplierList = new List<Supplier>(); 
 
             await Task.Run(async () =>
             {
 
-                categoryList = await _northWindContext.Suppliers
+                supplierList = await _northWindContext.Suppliers
                     .AsNoTracking()
-                    .Select(suppliers => new Supplier() {SupplierId = suppliers.SupplierId, CompanyName = suppliers.CompanyName})
+                    .Select(Supplier.Projection)
                     .ToListAsync();
 
             });
 
-            return categoryList;
+            return supplierList;
         }
 
         public static async Task<List<Products>> GetProducts(int categoryIdentifier, bool throwException = false)

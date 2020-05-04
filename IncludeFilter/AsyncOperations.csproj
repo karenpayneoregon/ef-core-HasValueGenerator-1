@@ -137,6 +137,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\Supplier.cs" />
     <Compile Include="Components\SortableBindingList.cs" />
     <Compile Include="LanguageExtensions\DataGridViewExtensions.cs" />
