@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AsyncOperations.ModelExtensions;
 using AsyncOperations.Projections;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace AsyncOperations.Classes
 {
@@ -20,7 +22,7 @@ namespace AsyncOperations.Classes
         /// primary key and product name
         /// </summary>
         /// <returns></returns>
-        public static async Task<List<Category>> GetCategoriesAsync()
+        public static async Task<List<Category>> GetCategoriesAllProjectionsAsync()
         {
             var categoryList = new List<Category>();
 
@@ -42,7 +44,7 @@ namespace AsyncOperations.Classes
         /// of Categories table.
         /// </summary>
         /// <returns></returns>
-        public static async Task<List<Categories>> GetCategoriesAllAsync() 
+        public static async Task<List<Categories>> GetCategoriesAllNoProjectionsAsync() 
         {
             var categoryList = new List<Categories>();
 
@@ -117,6 +119,31 @@ namespace AsyncOperations.Classes
             });
 
             return productList;
+        }
+        /// <summary>
+        /// Using extension methods
+        /// </summary>
+        public static async void GetOrders()
+        {
+
+            await Task.Run(async () =>
+            {
+                var orders1 = await NorthWindContext.Orders
+                    .IncludeDetails()
+                    .IncludeCustomer()
+                    .FirstOrDefaultAsync(x => x.CustomerIdentifier == 10);
+
+                var orders2 = await NorthWindContext.Orders
+                    .IncludeCustomerAndContact()
+                    .FirstOrDefaultAsync(x => x.CustomerIdentifier == 10);
+
+                var order3 = await NorthWindContext.Orders.IncludeOptions(contact: true, contactType: true).FirstOrDefaultAsync();
+
+
+
+            });
+
+
         }
     }
 }

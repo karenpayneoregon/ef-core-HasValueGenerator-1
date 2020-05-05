@@ -60,7 +60,7 @@ namespace AsyncOperations
         private async void Form1_Shown(object sender, EventArgs e)
         {
 
-            var categories = await Operations.GetCategoriesAsync();
+            var categories = await Operations.GetCategoriesAllProjectionsAsync();
             CategoryComboBox.DataSource = categories;
 
             SupplierColumn.DisplayMember = "CompanyName";

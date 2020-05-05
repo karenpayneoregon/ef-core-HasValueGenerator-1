@@ -139,8 +139,15 @@
   <ItemGroup>
     <Compile Include="Classes\Dialogs.cs" />
     <Compile Include="Classes\Exceptions.cs" />
+    <Compile Include="Examples\ExamplesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Examples\ExamplesForm.Designer.cs">
+      <DependentUpon>ExamplesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LanguageExtensions\ExceptionExtensions.cs" />
     <Compile Include="Projections\Category.cs" />
+    <Compile Include="ModelExtensions\QueryExtensions.cs" />
     <Compile Include="Projections\Supplier.cs" />
     <Compile Include="Components\SortableBindingList.cs" />
     <Compile Include="LanguageExtensions\DataGridViewExtensions.cs" />
@@ -165,6 +172,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Shippers.cs" />
     <Compile Include="Models\Suppliers.cs" />
+    <EmbeddedResource Include="Examples\ExamplesForm.resx">
+      <DependentUpon>ExamplesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
