@@ -13,6 +13,13 @@ namespace AsyncOperations.Classes
     {
         private static readonly NorthWindContext NorthWindContext = new NorthWindContext(); 
         public static NorthWindContext Context => NorthWindContext;
+
+        /// <summary>
+        /// Get all categories suitable for displaying in a ComboBox or
+        /// ListBox for reference only with only properties needed e.g.
+        /// primary key and product name
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<Category>> GetCategoriesAsync()
         {
             var categoryList = new List<Category>();
@@ -29,6 +36,42 @@ namespace AsyncOperations.Classes
             return categoryList;
 
         }
+        /// <summary>
+        /// Get all categories suitable for displaying in a ComboBox or
+        /// ListBox for reference only but unlike above will have all properties
+        /// of Categories table.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<Categories>> GetCategoriesAllAsync() 
+        {
+            var categoryList = new List<Categories>();
+
+            await Task.Run(async () =>
+            {
+
+                categoryList = await NorthWindContext.Categories
+                    .AsNoTracking()
+                    .ToListAsync();
+
+            });
+
+            return categoryList;
+
+        }
+        public static List<Categories> GetCategoriesAllNotTracked()
+        {
+
+            return NorthWindContext.Categories
+                .AsNoTracking()
+                .ToList();
+
+        }
+        public static List<Categories> GetCategoriesAllTracked()
+        {
+            return NorthWindContext.Categories
+                .ToList();
+        }
+
         /// <summary>
         /// Get list of supplier which is assigned to a private form variable
         /// and used when products for a specific category are selected in the form.
