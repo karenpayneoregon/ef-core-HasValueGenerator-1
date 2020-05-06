@@ -13,11 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityOperations", "EntityO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrontEnd", "EntityFrontEnd\EntityFrontEnd.csproj", "{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncOperations", "IncludeFilter\AsyncOperations.csproj", "{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HasValueGenerator", "HasValueGenerator", "{67EEBDA8-4045-40FD-A9D9-4B865D93AE43}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basic EF Win forms project", "Basic EF Win forms project", "{5C55AA6E-9CEF-4CBA-84A9-77F8D986F2A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +29,6 @@ Global
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,7 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4DE56AA0-0FC5-4BCC-8B6B-C50CD8287681} = {67EEBDA8-4045-40FD-A9D9-4B865D93AE43}
 		{C7B4D0FB-137D-47D2-9C18-909B0B1AED92} = {67EEBDA8-4045-40FD-A9D9-4B865D93AE43}
-		{9E720460-31B6-4DEC-A8F0-5C9EC879D15B} = {5C55AA6E-9CEF-4CBA-84A9-77F8D986F2A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {481F16F0-951B-47C8-A44E-9AB59D2195B2}
